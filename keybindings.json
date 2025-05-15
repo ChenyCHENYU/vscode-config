@@ -1,0 +1,47 @@
+// 将键绑定放在此文件中以覆盖默认值auto[]
+[
+  {
+    "key": "ctrl+d",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+win+u",
+    "command": "extension.cursorTip",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+win+t",
+    "command": "-extension.cursorTip",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+q",
+    "command": "samge.translate.en2zh"
+  },
+  {
+    "key": "alt+x",
+    "command": "-samge.translate.en2zh"
+  },
+  {
+    "key": "alt+e",
+    "command": "samge.translate.zh2en"
+  },
+  {
+    "key": "alt+z",
+    "command": "-samge.translate.zh2en"
+  },
+  {
+    "key": "ctrl+alt+z",
+    "command": "samge.translate.zh2enReplace"
+  },
+  {
+    "key": "ctrl+shift+alt+z",
+    "command": "-samge.translate.zh2enReplace"
+  }
+]

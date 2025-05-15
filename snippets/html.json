@@ -1,0 +1,55 @@
+{
+  "HTML5 Boilerplate": {
+    "prefix": "html5",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"${1:zh-CN}\">",
+      "<head>",
+      "\t<meta charset=\"UTF-8\">",
+      "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "\t<title>${2:Document}</title>",
+      "\t<link rel=\"stylesheet\" href=\"${3:styles.css}\">",
+      "</head>",
+      "<body>",
+      "\t$0",
+      "\t<script src=\"${4:script.js}\"></script>",
+      "</body>",
+      "</html>"
+    ],
+    "description": "HTML5基本模板"
+  },
+  "Link": {
+    "prefix": "a",
+    "body": ["<a href=\"${1:#}\">${2:链接文本}</a>$0"],
+    "description": "链接标签"
+  },
+  "Image": {
+    "prefix": "img",
+    "body": [
+      "<img src=\"${1:image.jpg}\" alt=\"${2:描述}\"${3: width=\"${4:300}\"} />$0"
+    ],
+    "description": "图片标签"
+  },
+  "Div with Class": {
+    "prefix": "divc",
+    "body": ["<div class=\"${1:className}\">", "\t$0", "</div>"],
+    "description": "带类名的div"
+  },
+  "Responsive Meta Tag": {
+    "prefix": "meta:vp",
+    "body": [
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">$0"
+    ],
+    "description": "响应式视口Meta标签"
+  },
+  "Form": {
+    "prefix": "form",
+    "body": [
+      "<form action=\"${1:#}\" method=\"${2:post}\">",
+      "\t$0",
+      "\t<button type=\"submit\">${3:提交}</button>",
+      "</form>"
+    ],
+    "description": "表单"
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "files.autoSave": "afterDelay",
+  "editor.fontFamily": "Maple Mono NF CN, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": "'calt', 'ss04', 'ss01', 'ss02'",
+  "editor.tabSize": 2,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "editor.mouseWheelZoom": true,
+  "editor.formatOnSave": true,
+  // ! prettier config
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "typescript.preferences.quoteStyle": "single",
+  "prettier.arrowParens": "avoid",
+  "prettier.jsxSingleQuote": true, // jsx 中单引号代替双引号
+  "prettier.printWidth": 80,
+  "prettier.bracketSpacing": true,
+  "prettier.bracketSameLine": false,
+  "prettier.proseWrap": "always", // .md 文本自动换行（提高可读性）
+  "prettier.singleAttributePerLine": true, // 多属性标签每行一个属性（增强可读性）
+  "prettier.vueIndentScriptAndStyle": true, // / 缩进 Vue 文件的 <script> 和 <style> 内容
+  "files.exclude": {
+    "**/node_modules": true
+  },
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // ! koroFileHeader config
+  // 头部注释
+  "fileheader.customMade": {
+    // 自动提取当前git config中的: 用户名、邮箱
+    "Author": "git config user.name && git config user.email", // 同时获取用户名与邮箱
+    "Date": "Do not edit", // 文件创建时间(不变)
+    "LastEditors": "git config user.name && git config user.email", // 文件最后编辑者 与Author字段一致
+    "LastEditTime": "Do not edit", // 文件最后编辑时间
+    "FilePath": "Do not edit", // 文件在项目中的相对路径 自动更新
+    "Description": "", // 介绍文件的作用、文件的入参、出参。
+    "custom_string_obkoro1_copyright": "Copyright (c) ${now_year} by CHENY, All Rights Reserved 😎. "
+  },
+  // 函数注释
+  "fileheader.cursorMode": {
+    "description": "", // 函数注释生成之后，光标移动到这里
+    "param": "", // param 开启函数参数自动提取 需要将光标放在函数行或者函数上方的空白行
+    "return": ""
+  },
+  "fileheader.configObj": {
+    "pathFormat": "${projectRoot}/...", // 改为相对路径格式
+    // 自动添加头部注释黑名单
+    "prohibitAutoAdd": ["json", "md"], // 禁止.json .md文件，自动添加头部注释
+    // 自动添加头部注释黑名单
+    "prohibitItemAutoAdd": ["test_koro", "test_koro2"], // 禁止test_kro/test_koro2项目自动添加头部注释
+    // 某些文件夹或文件禁止添加自动注释
+    "folderBlacklist": [
+      "node_modules",
+      "bun.lock"
+      // "webpack.config.js" // 可以禁止某些文件自动添加注释
+    ]
+  },
+  "terminal.integrated.profiles.windows": {
+    "cmder": {
+      "path": "D:/devlopment/Git/bin/bash.exe",
+      "args": [],
+      "icon": "terminal-bash"
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "git.autofetch": true,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.wordWrap": "on",
+  "gitlens.views.searchAndCompare.files.layout": "list",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  // ! TODO TREE CONFIG
+  //todo-tree 标签配置  标签兼容大小写字母(很好的功能!!!)
+  "todo-tree.regex.regex": "((%|#|//|<!--|^\\s*\\*)\\s*($TAGS)|^\\s*- \\[ \\])",
+  // 添加自定义的标签成员,将在下面实现它们的样式
+  "todo-tree.general.tags": ["TODO", "TAG", "BUG", "HACK", "FIXME", "MARK"],
+  "todo-tree.regex.regexCaseSensitive": true,
+  "todo-tree.highlights.defaultHighlight": {
+    //如果相应变量没赋值就会使用这里的默认值
+    "foreground": "#030303dd", //字体颜色
+    "background": "#fff713", //背景色
+    "icon": "check", //标签样式 check 是一个对号的样式
+    "rulerColour": "#fff713", //边框颜色
+    "type": "tag", //填充色类型  可在TODO TREE 细节页面找到允许的值
+    "iconColour": "#fff713" //标签颜色
+  },
+
+  "todo-tree.highlights.customHighlight": {
+    // 待完成
+    "TODO": {
+      "icon": "alert", //标签样式
+      "background": "#FF8C00", //背景色
+      "rulerColour": "#020201", //外框颜色
+      "iconColour": "#FF8C00" //标签颜色
+    },
+    // 错误
+    "BUG": {
+      "background": "#FF2D00",
+      "icon": "bug",
+      "rulerColour": "#FF2D00",
+      "iconColour": "#FF2D00"
+    },
+    // 标签
+    "TAG": {
+      "background": "#3498DB",
+      "icon": "tag",
+      "rulerColour": "#3498DB",
+      "iconColour": "#3498DB",
+      "rulerLane": "full"
+    },
+    // 待修理
+    "FIXME": {
+      "background": "#F06292",
+      "icon": "unverified",
+      "rulerColour": "#F06292",
+      "iconColour": "#F06292"
+    },
+    // 根据自己的使用定义
+    "HACK": {
+      "background": "#ffffff",
+      "icon": "versions",
+      "rulerColour": "#ffffff",
+      "iconColour": "#ffffff"
+    },
+    // 标记
+    "MARK": {
+      "background": "#08e6f6",
+      "icon": "note",
+      "rulerColour": "#08e6f6",
+      "iconColour": "#08e6f6"
+    }
+  },
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "bug",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "tag",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "fixme",
+      "color": "#F06292",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "hack",
+      "color": "#ffffff",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "mark",
+      "color": "#08e6f6",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  //! 开启悬停翻译，平时可以关闭，需要的时候再开启
+  "EnglishChineseDictionary.enableHover": false,
+  //! 有道翻译配置
+  "samge.translate.providerAppId": "4e5d63fa0a781989",
+  "samge.translate.providerAppSecret": "O0plOvz0eLC0TImAmuP309euwBGKVwPn",
+  "samge.translate.providerName": "youdao",
+  "samge.translate.enableOutput": false,
+  //! TypeScript 导入器配置
+  "tsimporter.filesToScan": ["**/*.ts", "**/*.tsx", "**/*.vue"],
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.colorTheme": "Monokai",
+  "code-runner.executorMap": {
+    "javascript": "node",
+    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "zig": "zig run",
+    "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "php": "php",
+    "python": "python -u",
+    "perl": "perl",
+    "perl6": "perl6",
+    "ruby": "ruby",
+    "go": "go run",
+    "lua": "lua",
+    "groovy": "groovy",
+    "powershell": "powershell -ExecutionPolicy ByPass -File",
+    "bat": "cmd /c",
+    "shellscript": "bash",
+    "fsharp": "fsi",
+    "csharp": "scriptcs",
+    "vbscript": "cscript //Nologo",
+    "typescript": "ts-node",
+    "coffeescript": "coffee",
+    "scala": "scala",
+    "swift": "swift",
+    "julia": "julia",
+    "crystal": "crystal",
+    "ocaml": "ocaml",
+    "r": "Rscript",
+    "applescript": "osascript",
+    "clojure": "lein exec",
+    "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+    "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+    "racket": "racket",
+    "scheme": "csi -script",
+    "ahk": "autohotkey",
+    "autoit": "autoit3",
+    "dart": "dart",
+    "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+    "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+    "haskell": "runghc",
+    "nim": "nim compile --verbosity:0 --hints:off --run",
+    "lisp": "sbcl --script",
+    "kit": "kitc --run",
+    "v": "v run",
+    "sass": "sass --style expanded",
+    "scss": "scss --style expanded",
+    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
+    "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "sml": "cd $dir && sml $fileName",
+    "mojo": "mojo run",
+    "erlang": "escript",
+    "spwn": "spwn build",
+    "pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
+    "gleam": "gleam run -m $fileNameWithoutExt"
+  },
+  "terminal.integrated.fontSize": 16, // 终端字体大小
+  "git.ignoreMissingGitWarning": true,
+  "trae.codeCompletionPro": {
+    "enableCodeCompletionPro": true
+  },
+  "github.copilot.enable": {
+    "enabled": true
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "Console Log": {
+    "prefix": "cl",
+    "body": ["console.log($1);$0"],
+    "description": "Console log快捷方式"
+  },
+  "Console Log with Variable": {
+    "prefix": "clv",
+    "body": ["console.log('$1:', $1);$0"],
+    "description": "带变量名的Console log"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": ["function ${1:functionName}(${2:params}) {", "\t$0", "}"],
+    "description": "函数声明"
+  },
+  "Arrow Function": {
+    "prefix": "af",
+    "body": ["const ${1:functionName} = (${2:params}) => {", "\t$0", "};"],
+    "description": "箭头函数"
+  },
+  "Import Statement": {
+    "prefix": "imp",
+    "body": ["import ${2:{ $3 \\}} from '$1';$0"],
+    "description": "导入语句"
+  },
+  "Try Catch": {
+    "prefix": "tc",
+    "body": [
+      "try {",
+      "\t$1",
+      "} catch (error) {",
+      "\tconsole.error('Error:', error);",
+      "\t$0",
+      "}"
+    ],
+    "description": "Try-Catch块"
+  }
+}
