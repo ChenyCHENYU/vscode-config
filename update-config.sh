@@ -41,6 +41,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Linux
     VSCODE_CONFIG_DIR="$HOME/.config/Code/User"
+elif [[ "$OSTYPE" == "msys"* ]] || [[ "$OSTYPE" == "cygwin"* ]]; then
+    # Windows (Git Bash/Msys/Cygwin)
+    VSCODE_CONFIG_DIR="$APPDATA/Code/User"
+    if [ -z "$APPDATA" ]; then
+        # 如果 APPDATA 环境变量未定义，尝试使用 Windows 默认路径
+        VSCODE_CONFIG_DIR="$HOME/AppData/Roaming/Code/User"
+    fi
 else
     print_error "不支持的操作系统: $OSTYPE"
     exit 1
