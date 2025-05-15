@@ -248,7 +248,6 @@
   "tsimporter.filesToScan": ["**/*.ts", "**/*.tsx", "**/*.vue"],
   "security.workspace.trust.untrustedFiles": "open",
   "workbench.editor.empty.hint": "hidden",
-  "workbench.colorTheme": "Monokai",
   "code-runner.executorMap": {
     "javascript": "node",
     "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
@@ -315,5 +314,6 @@
   },
   "github.copilot.enable": {
     "enabled": true
-  }
+  },
+  "workbench.colorTheme": "Monokai"
 }
