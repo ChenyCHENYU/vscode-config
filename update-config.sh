@@ -97,22 +97,17 @@ fi
 
 # 更新扩展列表
 print_message "更新扩展列表"
-code --list-extensions > extensions.list.new
 
-# 添加注释头
-cat > extensions.list.tmp << EOL
+# 创建带有注释头的新扩展列表
+cat > extensions.list << EOL
 # VSCode 扩展列表
 # 此文件由update-config.sh脚本自动生成
 # 更新时间: $(date)
 #
 # 每行一个扩展ID
 
+$(code --list-extensions)
 EOL
-
-# 将新的扩展列表附加到注释后
-cat extensions.list.new >> extensions.list.tmp
-rm extensions.list.new
-mv extensions.list.tmp extensions.list
 
 print_message "配置更新完成！"
 print_message "请检查更改，然后使用Git提交并推送更改："

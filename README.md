@@ -17,9 +17,13 @@
 ├── settings.json       # VSCode 用户设置
 ├── keybindings.json    # VSCode 快捷键配置
 ├── snippets/           # 代码片段配置
+│   ├── javascript.json # JavaScript/TypeScript 代码片段
+│   ├── html.json       # HTML 代码片段
+│   ├── css.json        # CSS 代码片段
+│   └── markdown.json   # Markdown 代码片段
 ├── extensions.list     # 扩展列表
 ├── setup.ps1           # Windows 安装脚本
-├── setup.sh           # macOS/Linux 安装脚本
+├── setup.sh            # macOS/Linux 安装脚本
 ├── update-config.ps1   # Windows 配置更新脚本 (仅管理员使用)
 ├── update-config.sh    # macOS/Linux 配置更新脚本 (仅管理员使用)
 └── README.md           # 说明文档
@@ -47,8 +51,14 @@
 
 ### 管理员 - 更新配置
 
-1. 修改本地 VSCode 配置
-2. 运行更新脚本将修改同步到仓库：
+1. 切换到 vscode-config 仓库目录：
+
+   ```bash
+   cd /path/to/vscode-config
+   ```
+
+2. 运行更新脚本：
+
    - Windows: 在 PowerShell 中运行
      ```powershell
      .\update-config.ps1
@@ -57,6 +67,7 @@
      ```bash
      ./update-config.sh
      ```
+
 3. 提交并推送更改到远程仓库：
    ```bash
    git add .
