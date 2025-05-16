@@ -315,5 +315,6 @@
   "github.copilot.enable": {
     "enabled": true
   },
-  "workbench.colorTheme": "Monokai"
+  "workbench.colorTheme": "Monokai",
+  "github.copilot.nextEditSuggestions.enabled": true
 }

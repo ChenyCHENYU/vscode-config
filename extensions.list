@@ -1,12 +1,14 @@
 # VSCode 扩展列表
 # 此文件由update-config.sh脚本自动生成
-# 更新时间: 2025年05月15日 18:01:58
+# 更新时间: 2025年05月16日 15:02:40
 #
 # 每行一个扩展ID
 
 aaron-bond.better-comments
 adpyke.codesnap
 alefragnani.project-manager
+antfu.iconify
+antfu.unocss
 dbaeumer.vscode-eslint
 donjayamanne.githistory
 eamodio.gitlens
