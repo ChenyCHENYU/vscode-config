@@ -11,7 +11,7 @@
 - 🚀 自动安装所需扩展
 - 💾 自动备份现有配置
 - ⚡ 防卡死设计，支持超时控制
-- 🎨 美化的状态显示和进度反馈
+- 🎨 美化的Git状态显示和进度反馈
 - 🔧 支持静默模式和强制模式
 
 ## 📁 目录结构
@@ -20,24 +20,19 @@
 .
 ├── settings.json              # VSCode 用户设置
 ├── keybindings.json           # VSCode 快捷键配置
-├── snippets/                  # 代码片段配置
-│   ├── javascript.json        # JavaScript/TypeScript 代码片段
-│   ├── html.json              # HTML 代码片段
-│   ├── css.json               # CSS 代码片段
-│   └── markdown.json          # Markdown 代码片段
 ├── extensions.list            # 扩展列表
-├── install-vscode-config.sh   # 跨平台安装脚本 (推荐)
-├── install-vscode-config.ps1  # PowerShell 安装脚本
-├── update-vscode-config.sh    # 跨平台更新脚本 (管理员用)
-├── update-vscode-config.ps1   # PowerShell 更新脚本 (管理员用)
+├── snippets/                  # 代码片段配置
+│   ├── doc.code-snippets      # 文档代码片段
+│   ├── vue-directives.json    # Vue 指令代码片段
+│   └── vue.json               # Vue 代码片段
+├── setup.sh                   # 安装脚本
+├── update-config.sh           # 更新脚本 (管理员用)
 └── README.md                  # 说明文档
 ```
 
 ## 🚀 使用方法
 
 ### 👨‍💻 团队成员 - 安装配置
-
-#### 方法1: 使用Bash脚本 (推荐)
 
 1. **克隆仓库:**
    ```bash
@@ -47,30 +42,20 @@
 
 2. **给脚本执行权限:**
    ```bash
-   chmod +x install-vscode-config.sh
+   chmod +x setup.sh
    ```
 
 3. **运行安装脚本:**
    ```bash
    # 交互式安装
-   ./install-vscode-config.sh
+   ./setup.sh
    
    # 静默安装 (推荐)
-   ./install-vscode-config.sh --force --silent
+   ./setup.sh --force --silent
    
    # 自定义超时时间
-   ./install-vscode-config.sh --timeout 60
+   ./setup.sh --timeout 60
    ```
-
-#### 方法2: 使用PowerShell脚本
-
-```powershell
-# Windows PowerShell
-.\install-vscode-config.ps1
-
-# 静默模式
-.\install-vscode-config.ps1 -Force -Silent
-```
 
 #### 📋 安装选项
 
@@ -87,10 +72,10 @@
 
 ```bash
 # 完全自动化：更新配置 → 提交 → 推送到多个远程仓库
-./update-vscode-config.sh --auto-commit --auto-push --force --push-remotes origin,gitee
+./update-config.sh --auto-commit --auto-push --force --push-remotes origin,gitee
 
 # 自定义提交消息
-./update-vscode-config.sh --auto-commit --auto-push --commit-message "重要配置更新" --push-remotes origin,gitee
+./update-config.sh --auto-commit --auto-push --commit-message "重要配置更新" --push-remotes origin,gitee
 ```
 
 #### 交互式更新
@@ -100,7 +85,7 @@
 cd /path/to/vscode-config
 
 # 运行更新脚本
-./update-vscode-config.sh
+./update-config.sh
 
 # 按提示选择是否提交和推送
 ```
@@ -144,8 +129,8 @@ cd /path/to/vscode-config
 
 ```bash
 # 添加到 ~/.bashrc 或 ~/.zshrc
-alias install-vscode='cd /path/to/vscode-config && ./install-vscode-config.sh --force --silent'
-alias update-vscode='cd /path/to/vscode-config && ./update-vscode-config.sh --auto-commit --auto-push --force --push-remotes origin,gitee'
+alias install-vscode='cd /path/to/vscode-config && ./setup.sh --force --silent'
+alias update-vscode='cd /path/to/vscode-config && ./update-config.sh --auto-commit --auto-push --force --push-remotes origin,gitee'
 
 # 使用
 install-vscode  # 安装配置
@@ -172,7 +157,6 @@ Copy-Item "C:\Users\用户名\AppData\Roaming\Code\User\backup_20250730143052\*"
 - **VSCode**: 已安装并添加到 PATH
 - **Git**: 用于克隆仓库和版本控制
 - **Bash**: Linux/macOS 自带，Windows 可使用 Git Bash
-- **PowerShell**: Windows 自带，Linux/macOS 需安装 PowerShell Core (可选)
 
 ## 🔐 权限管理
 
@@ -208,7 +192,7 @@ A: 脚本会显示失败的扩展和原因：
 
 A: 使用更新脚本的多仓库推送功能：
 ```bash
-./update-vscode-config.sh --auto-commit --auto-push --push-remotes origin,gitee,gitlab
+./update-config.sh --auto-commit --auto-push --push-remotes origin,gitee,gitlab
 ```
 
 ## 📞 技术支持
@@ -222,5 +206,3 @@ A: 使用更新脚本的多仓库推送功能：
 ---
 
 🎉 **享受统一的 VSCode 开发体验！**
-
-
