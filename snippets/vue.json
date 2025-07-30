@@ -10,7 +10,7 @@
       "",
       "<script setup lang=\"ts\">",
       "// Composition API 自动导入已配置",
-      "defineOptions({name: ''})" , 
+      "defineOptions({name: ''})",
       "",
       "const props = defineProps<{",
       "  ${1:propName}: ${2:string}",
@@ -30,22 +30,4 @@
     ],
     "description": "Vue3 单文件组件模板 (TypeScript + SCSS)"
   },
-  "Vue3 Ref": {
-    "prefix": "vref",
-    "body": "const ${1:var} = ref<${2:string}>(${3:null})",
-    "description": "创建响应式引用"
-  },
-  "Vue3 Composables": {
-    "prefix": "vuse",
-    "body": [
-      "const ${1:composable} = () => {",
-      "  ${2:// 组合逻辑}",
-      "  ",
-      "  return {",
-      "    ${3:exposedValues}",
-      "  }",
-      "}"
-    ],
-    "description": "组合式函数模板"
-  }
 }

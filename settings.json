@@ -5,24 +5,23 @@
   "editor.fontLigatures": "'calt', 'ss04', 'ss01', 'ss02'",
   "editor.tabSize": 2,
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.mouseWheelZoom": true,
   "editor.formatOnSave": true,
-  // ! prettier config
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
+  // ! prettier config - 优化版本
+  "editor.formatOnSaveTimeout": 2000,
+  "editor.formatOnSaveMode": "modificationsIfAvailable", // 只格式化当前文件，提升性能
+  "prettier.requireConfig": false, // 不强制要求配置文件，避免全项目扫描
+  "prettier.useEditorConfig": false, // 不使用.editorconfig，减少文件查找
+  // 删除了所有 prettier.xxx 规则配置，改为使用 .prettierrc 文件
+
   "typescript.preferences.quoteStyle": "single",
-  "prettier.arrowParens": "avoid",
-  "prettier.jsxSingleQuote": true, // jsx 中单引号代替双引号
-  "prettier.printWidth": 80,
-  "prettier.bracketSpacing": true,
-  "prettier.bracketSameLine": false,
-  "prettier.proseWrap": "always", // .md 文本自动换行（提高可读性）
-  "prettier.singleAttributePerLine": true, // 多属性标签每行一个属性（增强可读性）
-  "prettier.vueIndentScriptAndStyle": true, // / 缩进 Vue 文件的 <script> 和 <style> 内容
   "files.exclude": {
-    "**/node_modules": true
+    "**/node_modules": true,
+    "**/dist": true, // 新增：排除构建目录
+    "**/.git": true, // 新增：排除git目录
+    "**/coverage": true // 新增：排除测试覆盖率目录
   },
 
   "[jsonc]": {
@@ -42,10 +41,11 @@
   },
   // 函数注释
   "fileheader.cursorMode": {
-    "description": "", // 函数注释生成之后，光标移动到这里
-    "param": "", // param 开启函数参数自动提取 需要将光标放在函数行或者函数上方的空白行
+    "description": "",
+    "param": "",
     "return": ""
   },
+
   "fileheader.configObj": {
     "pathFormat": "${projectRoot}/...", // 改为相对路径格式
     // 自动添加头部注释黑名单
@@ -53,11 +53,7 @@
     // 自动添加头部注释黑名单
     "prohibitItemAutoAdd": ["test_koro", "test_koro2"], // 禁止test_kro/test_koro2项目自动添加头部注释
     // 某些文件夹或文件禁止添加自动注释
-    "folderBlacklist": [
-      "node_modules",
-      "bun.lock"
-      // "webpack.config.js" // 可以禁止某些文件自动添加注释
-    ]
+    "folderBlacklist": ["node_modules", "bun.lock"]
   },
   "terminal.integrated.profiles.windows": {
     "cmder": {
@@ -69,6 +65,7 @@
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "git.autofetch": true,
   "[vue]": {
+  
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "diffEditor.ignoreTrimWhitespace": false,
@@ -237,77 +234,25 @@
       "italic": false
     }
   ],
-  //! 开启悬停翻译，平时可以关闭，需要的时候再开启
-  "EnglishChineseDictionary.enableHover": false,
   //! 有道翻译配置
   "samge.translate.providerAppId": "4e5d63fa0a781989",
   "samge.translate.providerAppSecret": "O0plOvz0eLC0TImAmuP309euwBGKVwPn",
   "samge.translate.providerName": "youdao",
   "samge.translate.enableOutput": false,
-  //! TypeScript 导入器配置
+  //! code-runner 导入器配置
   "tsimporter.filesToScan": ["**/*.ts", "**/*.tsx", "**/*.vue"],
   "security.workspace.trust.untrustedFiles": "open",
   "workbench.editor.empty.hint": "hidden",
   "code-runner.executorMap": {
     "javascript": "node",
-    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
-    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "zig": "zig run",
-    "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "php": "php",
     "python": "python -u",
-    "perl": "perl",
-    "perl6": "perl6",
-    "ruby": "ruby",
     "go": "go run",
-    "lua": "lua",
-    "groovy": "groovy",
-    "powershell": "powershell -ExecutionPolicy ByPass -File",
-    "bat": "cmd /c",
-    "shellscript": "bash",
-    "fsharp": "fsi",
-    "csharp": "scriptcs",
-    "vbscript": "cscript //Nologo",
     "typescript": "ts-node",
-    "coffeescript": "coffee",
-    "scala": "scala",
-    "swift": "swift",
-    "julia": "julia",
-    "crystal": "crystal",
-    "ocaml": "ocaml",
-    "r": "Rscript",
-    "applescript": "osascript",
-    "clojure": "lein exec",
-    "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
-    "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
-    "racket": "racket",
-    "scheme": "csi -script",
-    "ahk": "autohotkey",
-    "autoit": "autoit3",
-    "dart": "dart",
-    "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
-    "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
-    "haskell": "runghc",
-    "nim": "nim compile --verbosity:0 --hints:off --run",
-    "lisp": "sbcl --script",
-    "kit": "kitc --run",
-    "v": "v run",
     "sass": "sass --style expanded",
     "scss": "scss --style expanded",
-    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
-    "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "sml": "cd $dir && sml $fileName",
-    "mojo": "mojo run",
-    "erlang": "escript",
-    "spwn": "spwn build",
-    "pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
-    "gleam": "gleam run -m $fileNameWithoutExt"
+    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css"
   },
-  "terminal.integrated.fontSize": 16, // 终端字体大小
+  "terminal.integrated.fontSize": 16, // 终端字体大小·
   "git.ignoreMissingGitWarning": true,
   "trae.codeCompletionPro": {
     "enableCodeCompletionPro": true
@@ -316,5 +261,19 @@
     "enabled": true
   },
   "workbench.colorTheme": "Monokai",
-  "github.copilot.nextEditSuggestions.enabled": true
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "files.associations": {
+    "*.vue": "vue",
+    "*.d.ts": "typescript"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/*.log": true,
+    "**/dist": true,
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "cody.suggestions.mode": "auto-edit"
 }

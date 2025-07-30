@@ -1,33 +1,38 @@
 # VSCode 扩展列表
-# 此文件由update-config.sh脚本自动生成
-# 更新时间: 2025年05月16日 15:02:40
+# 此文件由update脚本自动生成
+# 更新时间: 2025年07月30日  9:03:51
+# 操作系统: Windows
 #
 # 每行一个扩展ID
 
 aaron-bond.better-comments
 adpyke.codesnap
 alefragnani.project-manager
+alibaba-cloud.tongyi-lingma
 antfu.iconify
 antfu.unocss
+chakrounanas.turbo-console-log
+christian-kohler.path-intellisense
 dbaeumer.vscode-eslint
 donjayamanne.githistory
 eamodio.gitlens
 editorconfig.editorconfig
 esbenp.prettier-vscode
 formulahendry.auto-close-tag
+formulahendry.auto-rename-tag
 formulahendry.code-runner
-github.copilot
-github.copilot-chat
-github.vscode-pull-request-github
 gruntfuggly.todo-tree
+hunghg255.iconify-preview
 marscode.marscode-extension
 ms-ceintl.vscode-language-pack-zh-hans
 naumovs.color-highlight
 obkoro1.korofileheader
+perkovec.emoji
 pkief.material-icon-theme
 pmneo.tsimporter
 pranaygp.vscode-css-peek
 ritwickdey.liveserver
+russell.any-rule
 samge.vscode-samge-translate
 streetsidesoftware.code-spell-checker
 tencent-cloud.coding-copilot
@@ -35,3 +40,4 @@ usernamehw.errorlens
 vitest.explorer
 vue.volar
 wix.vscode-import-cost
+zhucy.project-tree

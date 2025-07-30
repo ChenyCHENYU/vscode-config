@@ -43,5 +43,10 @@
   {
     "key": "ctrl+shift+alt+z",
     "command": "-samge.translate.zh2enReplace"
+  },
+  {
+    "key": "ctrl+win+i",
+    "command": "-Tencent-Cloud.coding-copilot.chat.start",
+    "when": "coding-copilot.chat.initialized && coding-copilot.state.authenticated && coding-copilot.state.initialized"
   }
 ]
