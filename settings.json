@@ -65,7 +65,6 @@
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "git.autofetch": true,
   "[vue]": {
-  
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "diffEditor.ignoreTrimWhitespace": false,
@@ -275,5 +274,9 @@
   },
   "typescript.preferences.includePackageJsonAutoImports": "auto",
   "editor.inlineSuggest.suppressSuggestions": true,
-  "cody.suggestions.mode": "auto-edit"
+  "cody.suggestions.mode": "auto-edit",
+  "trae.chatLanguage": "cn",
+  "trae.tab.cue": true,
+  "trae.tab.enableRename": false,
+  "trae.tab.enableAutoImport": false
 }
