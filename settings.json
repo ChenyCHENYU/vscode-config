@@ -278,5 +278,7 @@
   "trae.chatLanguage": "cn",
   "trae.tab.cue": true,
   "trae.tab.enableRename": false,
-  "trae.tab.enableAutoImport": false
+  "trae.tab.enableAutoImport": false,
+  "roo-cline.allowedCommands": ["git log", "git diff", "git show"],
+  "roo-cline.deniedCommands": []
 }

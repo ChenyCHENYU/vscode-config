@@ -1,6 +1,6 @@
 # VSCode 扩展列表
 # 此文件由update脚本自动生成
-# 更新时间: 2025年08月20日  8:33:04
+# 更新时间: 2025年10月 3日 21:00:38
 # 操作系统: Windows
 #
 # 每行一个扩展ID
@@ -24,7 +24,7 @@ formulahendry.auto-rename-tag
 formulahendry.code-runner
 gruntfuggly.todo-tree
 hunghg255.iconify-preview
-marscode.marscode-extension
+hybridtalentcomputing.cline-chinese
 ms-ceintl.vscode-language-pack-zh-hans
 naumovs.color-highlight
 obkoro1.korofileheader
@@ -33,10 +33,12 @@ pkief.material-icon-theme
 pmneo.tsimporter
 pranaygp.vscode-css-peek
 ritwickdey.liveserver
+rooveterinaryinc.roo-cline
 russell.any-rule
 samge.vscode-samge-translate
 streetsidesoftware.code-spell-checker
-tencent-cloud.coding-copilot
+uni-helper.uni-app-schemas-vscode
+uni-helper.uni-app-snippets-vscode
 usernamehw.errorlens
 vitest.explorer
 vue.volar
