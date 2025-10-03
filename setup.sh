@@ -18,6 +18,7 @@ NC='\033[0m' # No Color
 FORCE=false
 SILENT=false
 TIMEOUT=30
+SYNC_MODE="overwrite"  # overwrite 或 extend
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -33,6 +34,10 @@ while [[ $# -gt 0 ]]; do
             TIMEOUT="$2"
             shift 2
             ;;
+        --mode)
+            SYNC_MODE="$2"
+            shift 2
+            ;;
         --help)
             echo "VSCode配置安装脚本 - 纯Bash版本"
             echo ""
@@ -42,10 +47,16 @@ while [[ $# -gt 0 ]]; do
             echo "  --force     强制安装，无交互确认"
             echo "  --silent    静默模式，不等待用户输入"
             echo "  --timeout   扩展安装超时时间(秒，默认30)"
+            echo "  --mode MODE 扩展同步模式: overwrite(覆盖) 或 extend(扩展)"
             echo "  --help      显示此帮助信息"
             echo ""
+            echo "同步模式说明:"
+            echo "  overwrite - 覆盖模式：安装列表中的扩展，卸载不在列表中的扩展"
+            echo "  extend    - 扩展模式：只安装列表中缺失的扩展，不卸载任何扩展"
+            echo ""
             echo "示例:"
-            echo "  $0 --force --silent"
+            echo "  $0 --force --silent --mode overwrite"
+            echo "  $0 --force --mode extend"
             exit 0
             ;;
         *)
@@ -54,6 +65,12 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+# 验证同步模式
+if [[ "$SYNC_MODE" != "overwrite" && "$SYNC_MODE" != "extend" ]]; then
+    print_error "无效的同步模式: $SYNC_MODE。请使用 'overwrite' 或 'extend'"
+    exit 1
+fi
 
 # 打印带颜色的消息
 print_info() {
@@ -242,52 +259,41 @@ fi
 
 # 安装扩展
 if [ -f "extensions.list" ]; then
-    print_info "开始安装扩展..."
+    print_info "开始同步扩展..."
     
-    # 读取扩展列表，过滤注释和空行
-    extensions=$(grep -v '^#' extensions.list | grep -v '^$' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
-    
-    if [ -n "$extensions" ]; then
-        total_extensions=$(echo "$extensions" | wc -l)
-        installed=0
-        failed=0
-        
-        print_info "找到 $total_extensions 个扩展需要安装"
-        
-        # 询问是否安装扩展
-        install_extensions="$FORCE"
-        if [ "$install_extensions" != true ]; then
-            response=$(safe_user_input "是否安装扩展? (Y/n):" "Y" 10)
-            if [[ "$response" =~ ^([yY][eE][sS]|[yY]|^$) ]]; then
-                install_extensions=true
-            fi
+    # 询问是否同步扩展
+    sync_extensions="$FORCE"
+    if [ "$sync_extensions" != true ]; then
+        response=$(safe_user_input "是否同步扩展? (Y/n):" "Y" 10)
+        if [[ "$response" =~ ^([yY][eE][sS]|[yY]|^$) ]]; then
+            sync_extensions=true
         fi
+    fi
+    
+    if [ "$sync_extensions" = true ]; then
+        # 调用扩展同步脚本
+        sync_args=""
+        if [ "$FORCE" = true ]; then
+            sync_args="$sync_args --force"
+        fi
+        if [ "$SILENT" = true ]; then
+            sync_args="$sync_args --silent"
+        fi
+        sync_args="$sync_args --timeout $TIMEOUT"
+        sync_args="$sync_args --mode $SYNC_MODE"
         
-        if [ "$install_extensions" = true ]; then
-            # 安装扩展
-            while IFS= read -r extension; do
-                if [ -n "$extension" ]; then
-                    installed=$((installed + 1))
-                    
-                    if install_extension "$extension" "$TIMEOUT"; then
-                        # 安装成功
-                        :
-                    else
-                        failed=$((failed + 1))
-                    fi
-                fi
-            done <<< "$extensions"
-            
-            success_count=$((installed - failed))
-            print_info "扩展安装完成: 成功 $success_count/$total_extensions，失败 $failed"
+        # 运行同步脚本
+        if bash sync-extensions.sh $sync_args; then
+            print_success "✓ 扩展同步完成"
         else
-            print_info "跳过扩展安装"
+            print_error "扩展同步失败"
+            exit 1
         fi
     else
-        print_warning "extensions.list 文件为空或只包含注释"
+        print_info "跳过扩展同步"
     fi
 else
-    print_warning "未找到 extensions.list 文件，跳过安装扩展"
+    print_warning "未找到 extensions.list 文件，跳过同步扩展"
     
     # 创建示例扩展列表文件
     cat > extensions.list << 'EOF'

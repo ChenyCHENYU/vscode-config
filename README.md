@@ -13,6 +13,8 @@
 - ⚡ 防卡死设计，支持超时控制
 - 🎨 美化的Git状态显示和进度反馈
 - 🔧 支持静默模式和强制模式
+- 📥 专门的上传和下载脚本，操作更清晰
+- 🔄 智能扩展同步，支持覆盖模式和扩展模式
 
 ## 📁 目录结构
 
@@ -26,13 +28,21 @@
 │   ├── vue-directives.json    # Vue 指令代码片段
 │   └── vue.json               # Vue 代码片段
 ├── setup.sh                   # 安装脚本
-├── update-config.sh           # 更新脚本 (管理员用)
+├── update-config.sh           # 更新脚本 (管理员用，兼容旧版本)
+├── upload-config.sh           # 上传脚本 (管理员用，推荐)
+├── download-config.sh         # 下载脚本 (团队成员用)
+├── sync-extensions.sh         # 扩展同步脚本
+├── upload.sh                  # 快速上传脚本 (管理员用)
+├── download.sh                # 快速下载脚本 (覆盖模式)
+├── download-extend.sh         # 快速下载脚本 (扩展模式)
+├── sync.sh                    # 快速同步脚本 (覆盖模式)
+├── sync-extend.sh             # 快速同步脚本 (扩展模式)
 └── README.md                  # 说明文档
 ```
 
 ## 🚀 使用方法
 
-### 👨‍💻 团队成员 - 安装配置
+### 基本使用
 
 1. **克隆仓库:**
    ```bash
@@ -42,64 +52,94 @@
 
 2. **给脚本执行权限:**
    ```bash
-   chmod +x setup.sh
+   chmod +x *.sh
    ```
 
-3. **运行安装脚本:**
+3. **团队成员下载配置:**
    ```bash
-   # 交互式安装
-   ./setup.sh
+   # 下载并安装配置（覆盖模式）
+   ./download.sh
    
-   # 静默安装 (推荐)
-   ./setup.sh --force --silent
-   
-   # 自定义超时时间
-   ./setup.sh --timeout 60
+   # 下载并安装配置（扩展模式）
+   ./download-extend.sh
    ```
 
-#### 📋 安装选项
+4. **管理员上传配置:**
+   ```bash
+   # 上传本地配置
+   ./upload.sh
+   ```
 
-| 参数 | 说明 |
-|------|------|
-| `--force` | 强制安装，无交互确认 |
-| `--silent` | 静默模式，不等待用户输入 |
-| `--timeout N` | 扩展安装超时时间(秒，默认30) |
-| `--help` | 显示帮助信息 |
+### 高级用法
 
-### 🔧 管理员 - 更新配置
-
-#### 一键自动化更新 (推荐)
+#### 下载配置
 
 ```bash
-# 完全自动化：更新配置 → 提交 → 推送到多个远程仓库
-./update-config.sh --auto-commit --auto-push --force --push-remotes origin,gitee
+# 交互式下载
+./download-config.sh
 
-# 自定义提交消息
-./update-config.sh --auto-commit --auto-push --commit-message "重要配置更新" --push-remotes origin,gitee
+# 自动下载最新配置
+./download-config.sh --auto-pull --force
+
+# 下载并清理本地未跟踪文件
+./download-config.sh --auto-pull --clean --force
+
+# 使用扩展模式（不卸载任何扩展）
+./download-config.sh --auto-pull --force --mode extend
 ```
 
-#### 交互式更新
+#### 安装配置
 
 ```bash
-# 切换到配置仓库目录
-cd /path/to/vscode-config
+# 交互式安装
+./setup.sh
 
-# 运行更新脚本
-./update-config.sh
+# 静默安装
+./setup.sh --force --silent
 
-# 按提示选择是否提交和推送
+# 使用扩展模式
+./setup.sh --force --silent --mode extend
 ```
 
-#### 🎛️ 更新选项
+#### 上传配置
 
-| 参数 | 说明 |
-|------|------|
-| `--auto-commit` | 自动提交更改 |
-| `--auto-push` | 自动推送到远程仓库 |
-| `--force` | 强制执行，无交互确认 |
-| `--commit-message "MSG"` | 自定义提交消息 |
-| `--push-remotes origin,gitee` | 指定推送的远程仓库 |
-| `--help` | 显示帮助信息 |
+```bash
+# 交互式上传
+./upload-config.sh
+
+# 自动提交并推送
+./upload-config.sh --auto-commit --auto-push --force
+
+# 上传前先同步远程更改
+./upload-config.sh --auto-commit --auto-push --force --sync-before
+
+# 推送到多个远程仓库
+./upload-config.sh --auto-commit --auto-push --force --push-remotes origin,gitee
+```
+
+#### 同步扩展
+
+```bash
+# 交互式同步（覆盖模式）
+./sync-extensions.sh
+
+# 强制同步（覆盖模式）
+./sync-extensions.sh --force
+
+# 扩展模式（不卸载任何扩展）
+./sync-extensions.sh --force --mode extend
+
+# 仅同步扩展（覆盖模式）
+./sync.sh
+
+# 仅同步扩展（扩展模式）
+./sync-extend.sh
+```
+
+### 同步模式说明
+
+- **覆盖模式 (overwrite)**：安装列表中的扩展，卸载不在列表中的扩展。确保所有团队成员的扩展列表完全一致。
+- **扩展模式 (extend)**：只安装列表中缺失的扩展，不卸载任何扩展。适合希望保留个人扩展同时获取团队标准扩展的场景。
 
 ## 🎨 美化的状态显示
 
@@ -129,12 +169,36 @@ cd /path/to/vscode-config
 
 ```bash
 # 添加到 ~/.bashrc 或 ~/.zshrc
+# 使用完整脚本的别名
 alias install-vscode='cd /path/to/vscode-config && ./setup.sh --force --silent'
-alias update-vscode='cd /path/to/vscode-config && ./update-config.sh --auto-commit --auto-push --force --push-remotes origin,gitee'
+alias download-vscode='cd /path/to/vscode-config && ./download-config.sh --auto-pull --force && ./setup.sh --force --silent'
+alias download-vscode-extend='cd /path/to/vscode-config && ./download-config.sh --auto-pull --force --mode extend && ./setup.sh --force --silent --mode extend'
+alias upload-vscode='cd /path/to/vscode-config && ./upload-config.sh --auto-commit --auto-push --force --push-remotes origin,gitee'
+alias sync-extensions='cd /path/to/vscode-config && ./sync-extensions.sh --force'
+alias sync-extensions-extend='cd /path/to/vscode-config && ./sync-extensions.sh --force --mode extend'
+
+# 使用快速脚本的别名（推荐）
+alias vs-upload='cd /path/to/vscode-config && ./upload.sh'
+alias vs-download='cd /path/to/vscode-config && ./download.sh'
+alias vs-download-extend='cd /path/to/vscode-config && ./download-extend.sh'
+alias vs-sync='cd /path/to/vscode-config && ./sync.sh'
+alias vs-sync-extend='cd /path/to/vscode-config && ./sync-extend.sh'
 
 # 使用
-install-vscode  # 安装配置
-update-vscode   # 更新配置
+# 完整脚本版本
+install-vscode           # 安装配置（覆盖模式）
+download-vscode          # 下载并安装最新配置（覆盖模式）
+download-vscode-extend   # 下载并安装最新配置（扩展模式）
+upload-vscode            # 上传本地配置
+sync-extensions          # 仅同步扩展（覆盖模式）
+sync-extensions-extend   # 仅同步扩展（扩展模式）
+
+# 快速脚本版本（推荐）
+vs-upload                # 一键上传配置
+vs-download              # 一键下载并安装配置（覆盖模式）
+vs-download-extend       # 一键下载并安装配置（扩展模式）
+vs-sync                  # 一键同步扩展（覆盖模式）
+vs-sync-extend           # 一键同步扩展（扩展模式）
 ```
 
 ### 🔙 恢复备份配置
@@ -169,8 +233,12 @@ Copy-Item "C:\Users\用户名\AppData\Roaming\Code\User\backup_20250730143052\*"
 - 📦 安装脚本会覆盖现有的 VSCode 配置，脚本会自动备份
 - 🎯 如果团队成员需要个性化设置，建议在团队配置基础上进行调整
 - 🔌 某些扩展可能需要额外的配置或登录，请参考相应扩展的文档
-- 🔄 建议定期运行安装脚本以获取最新的团队配置更新
+- 🔄 建议定期运行下载脚本以获取最新的团队配置更新
 - 🌐 网络问题可能导致扩展安装失败，脚本支持重新运行
+- 🔄 使用上传脚本前，建议先使用 `--sync-before` 选项同步远程更改，避免冲突
+- 🔄 覆盖模式会自动卸载不在列表中的扩展，确保所有团队成员的扩展列表完全一致
+- 🔄 扩展模式只安装缺失的扩展，不卸载任何扩展，适合需要保留个人扩展的场景
+- 🔄 团队应统一使用一种同步模式，避免扩展同步混乱
 
 ## 🆘 常见问题
 
@@ -193,6 +261,48 @@ A: 脚本会显示失败的扩展和原因：
 A: 使用更新脚本的多仓库推送功能：
 ```bash
 ./update-config.sh --auto-commit --auto-push --push-remotes origin,gitee,gitlab
+```
+
+### Q: 为什么一台电脑删除的扩展，在另一台电脑上还存在？
+
+A: 这是因为旧版本的脚本只负责安装扩展，不负责卸载不在列表中的扩展。新版本已解决此问题：
+1. 使用新的下载脚本：`./download-config.sh --auto-pull --force`
+2. 或者单独运行扩展同步脚本：`./sync-extensions.sh --force`
+3. 这将自动卸载不在extensions.list中的扩展
+
+### Q: 如何只同步扩展而不更新其他配置？
+
+A: 使用扩展同步脚本：
+```bash
+# 交互式同步（覆盖模式）
+./sync-extensions.sh
+
+# 强制同步，自动安装和卸载（覆盖模式）
+./sync-extensions.sh --force
+
+# 扩展模式：只安装新扩展，不卸载任何扩展
+./sync-extensions.sh --force --mode extend
+```
+
+### Q: 覆盖模式和扩展模式有什么区别？
+
+A: 两种模式的区别如下：
+- **覆盖模式 (overwrite)**：安装列表中的所有扩展，同时卸载不在列表中的扩展。这确保所有团队成员的VSCode环境完全一致，适合需要标准化开发环境的团队。
+- **扩展模式 (extend)**：只安装列表中缺失的扩展，不卸载任何扩展。适合希望保留个人扩展同时获取团队标准扩展的场景，提供更大的灵活性。
+
+使用示例：
+```bash
+# 下载配置并使用覆盖模式同步扩展（默认）
+./download-config.sh --auto-pull --force --mode overwrite
+
+# 下载配置并使用扩展模式同步扩展
+./download-config.sh --auto-pull --force --mode extend
+
+# 安装配置并使用覆盖模式同步扩展（默认）
+./setup.sh --force --silent --mode overwrite
+
+# 安装配置并使用扩展模式同步扩展
+./setup.sh --force --silent --mode extend
 ```
 
 ## 📞 技术支持
