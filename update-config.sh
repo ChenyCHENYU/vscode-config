@@ -2,8 +2,13 @@
 
 # VSCode 配置更新脚本 - 优化版本
 # 支持自动化Git操作，美化状态显示
+# 版本: 1.1.0
 
 set -e  # 遇到错误立即退出
+
+# 切换到脚本所在目录
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
 
 # 颜色定义
 GREEN='\033[0;32m'

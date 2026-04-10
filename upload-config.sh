@@ -2,8 +2,13 @@
 
 # VSCode 配置上传脚本 - 将本地配置推送到远程仓库
 # 此脚本用于将本地VSCode配置更新推送到远程仓库
+# 版本: 1.1.0
 
 set -e  # 遇到错误立即退出
+
+# 切换到脚本所在目录
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
 
 # 颜色定义
 GREEN='\033[0;32m'

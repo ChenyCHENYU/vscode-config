@@ -12,5 +12,8 @@
 # VSCode 配置快速下载脚本（覆盖模式）
 # 这是一个简化的下载脚本，使用最常用的参数
 
-./download-config.sh --auto-pull --force --mode overwrite
-./setup.sh --force --silent --mode overwrite
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+"$SCRIPT_DIR/download-config.sh" --auto-pull --force --mode overwrite
+"$SCRIPT_DIR/setup.sh" --force --silent --mode overwrite

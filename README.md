@@ -1,5 +1,7 @@
 # VSCode 团队配置管理
 
+> **版本**: 1.2.0 | **更新日志**: [CHANGELOG.md](CHANGELOG.md)
+
 这个仓库用于管理和分发 VSCode 的标准配置，包括设置、快捷键、代码片段和扩展列表。支持跨平台使用，提供自动化的安装和更新工具。
 
 ## ✨ 特性
@@ -15,6 +17,11 @@
 - 🔧 支持静默模式和强制模式
 - 📥 专门的上传和下载脚本，操作更清晰
 - 🔄 智能扩展同步，支持覆盖模式和扩展模式
+- 🔍 干运行模式，安装前预览变更
+- 📊 配置差异预览，一目了然
+- 🔀 settings.json 深度合并模式
+- 🔒 锁文件机制，防止并发冲突
+- 📦 npm 包封装，支持 CLI 命令
 
 ## 📁 目录结构
 
@@ -37,10 +44,34 @@
 ├── download-extend.sh         # 快速下载脚本 (扩展模式)
 ├── sync.sh                    # 快速同步脚本 (覆盖模式)
 ├── sync-extend.sh             # 快速同步脚本 (扩展模式)
+├── bin/cli.sh                 # CLI 命令入口
+├── package.json               # npm 包配置
+├── VERSION                    # 版本号文件
+├── CHANGELOG.md               # 变更日志
+├── .gitignore                 # Git 忽略规则
 └── README.md                  # 说明文档
 ```
 
 ## 🚀 使用方法
+
+### 团队成员首次安装（推荐）
+
+```bash
+# 1. 克隆仓库
+git clone <仓库URL> vscode-config
+cd vscode-config
+
+# 2. 给脚本执行权限（macOS/Linux）
+chmod +x *.sh
+
+# 3. 一键安装（扩展模式，保留个人已有扩展）
+./download-extend.sh
+
+# 或一键安装（覆盖模式，严格统一扩展）
+./download.sh
+```
+
+> **Windows 用户**: 请使用 **Git Bash** 执行脚本，不要使用 CMD 或 PowerShell。
 
 ### 基本使用
 
@@ -136,6 +167,47 @@
 ./sync-extend.sh
 ```
 
+#### 干运行 & 差异预览
+
+```bash
+# 预览扩展变更（不实际安装/卸载）
+./sync-extensions.sh --dry-run
+
+# 预览配置文件差异
+./setup.sh --diff
+
+# 预览完整安装（不实际执行）
+./setup.sh --dry-run
+```
+
+#### 配置合并模式
+
+```bash
+# 深度合并 settings.json（保留本地设置，合入团队设置）
+./setup.sh --force --silent --merge
+```
+
+> 合并模式会将团队 settings.json 与本地设置深度合并，本地已有的键值不会被覆盖，仅补充缺失的配置项。
+
+#### npm CLI 使用
+
+```bash
+# 全局安装
+npm install -g .
+
+# 使用 CLI 命令
+vscode-config install          # 下载并安装（覆盖模式）
+vscode-config install:extend   # 下载并安装（扩展模式）
+vscode-config install:merge    # 下载并合并安装
+vscode-config upload           # 上传配置
+vscode-config sync             # 同步扩展（覆盖模式）
+vscode-config sync:extend      # 同步扩展（扩展模式）
+vscode-config dry-run          # 干运行预览
+vscode-config diff             # 配置差异预览
+vscode-config version          # 查看版本
+vscode-config help             # 查看帮助
+```
+
 ### 同步模式说明
 
 - **覆盖模式 (overwrite)**：安装列表中的扩展，卸载不在列表中的扩展。确保所有团队成员的扩展列表完全一致。
@@ -160,6 +232,7 @@
 
 - **自动备份**: 安装前自动备份现有配置到带时间戳的目录
 - **超时控制**: 扩展安装支持超时，防止脚本卡死
+- **锁文件机制**: 防止多个脚本实例并发执行导致冲突
 - **错误处理**: 完善的错误检查和友好的错误提示
 - **恢复机制**: 提供清晰的配置恢复命令
 
@@ -242,6 +315,14 @@ Copy-Item "C:\Users\用户名\AppData\Roaming\Code\User\backup_20250730143052\*"
 
 ## 🆘 常见问题
 
+### Q: 安装时不断弹出新窗口 / 扩展安装失败？
+
+A: v1.0 版本中每个扩展会单独调用 `code --install-extension`，在 Windows 上会为每个扩展打开一个新的 VS Code 窗口。**v1.1.0 已修复此问题**，改为单次批量调用。请更新到最新版本：
+```bash
+git pull origin main
+./download.sh  # 或 ./download-extend.sh
+```
+
 ### Q: 脚本执行时卡住了怎么办？
 
 A: 新版本脚本已解决卡死问题。如遇到问题：
@@ -312,6 +393,12 @@ A: 两种模式的区别如下：
 2. 检查 VSCode 和 Git 是否正确安装
 3. 确认网络连接正常
 4. 联系仓库管理员
+
+## 📋 版本管理
+
+- 版本号记录在 `VERSION` 文件中，遵循 [语义化版本](https://semver.org/lang/zh-CN/)
+- 所有变更记录在 [CHANGELOG.md](CHANGELOG.md) 中
+- 管理员更新配置后，建议同步更新版本号
 
 ---
 

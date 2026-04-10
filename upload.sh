@@ -12,4 +12,7 @@
 # VSCode 配置快速上传脚本
 # 这是一个简化的上传脚本，使用最常用的参数
 
-./upload-config.sh --auto-commit --auto-push --force --push-remotes origin,gitee
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+"$SCRIPT_DIR/upload-config.sh" --auto-commit --auto-push --force --push-remotes origin,gitee

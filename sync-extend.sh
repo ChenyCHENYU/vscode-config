@@ -12,4 +12,7 @@
 # VSCode 扩展快速同步脚本（扩展模式）
 # 这是一个简化的同步脚本，使用扩展模式
 
-./sync-extensions.sh --force --mode extend
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+"$SCRIPT_DIR/sync-extensions.sh" --force --mode extend

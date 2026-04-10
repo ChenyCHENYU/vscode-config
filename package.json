@@ -1,0 +1,28 @@
+{
+  "name": "vscode-config",
+  "version": "1.2.0",
+  "description": "VSCode 团队配置管理工具 - 一键安装/同步 VSCode 设置、快捷键、代码片段和扩展",
+  "bin": {
+    "vscode-config": "./bin/cli.sh"
+  },
+  "scripts": {
+    "upload": "bash ./upload.sh",
+    "download": "bash ./download.sh",
+    "download:extend": "bash ./download-extend.sh",
+    "sync": "bash ./sync.sh",
+    "sync:extend": "bash ./sync-extend.sh",
+    "setup": "bash ./setup.sh --force --silent",
+    "setup:merge": "bash ./setup.sh --force --silent --merge",
+    "dry-run": "bash ./sync-extensions.sh --force --dry-run"
+  },
+  "keywords": ["vscode", "config", "team", "extensions", "sync"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "os": ["darwin", "linux", "win32"],
+  "engines": {
+    "node": ">=14"
+  }
+}

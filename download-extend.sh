@@ -12,5 +12,8 @@
 # VSCode 配置快速下载脚本（扩展模式）
 # 这是一个简化的下载脚本，使用扩展模式
 
-./download-config.sh --auto-pull --force --mode extend
-./setup.sh --force --silent --mode extend
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+"$SCRIPT_DIR/download-config.sh" --auto-pull --force --mode extend
+"$SCRIPT_DIR/setup.sh" --force --silent --mode extend
