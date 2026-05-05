@@ -1,13 +1,13 @@
-# VS Code Extensions
-# 由 vscode-config upload 生成 (2026/4/11)
-# 共 45 个扩展
+# Editor Extensions
+# 由 vscode-config upload 生成 (2026/5/5)
+# 共 41 个扩展
 
 aaron-bond.better-comments
 adpyke.codesnap
 alefragnani.project-manager
-alibaba-cloud.tongyi-lingma
 antfu.iconify
 antfu.unocss
+anthropic.claude-code
 chakrounanas.turbo-console-log
 christian-kohler.path-intellisense
 dbaeumer.vscode-eslint
@@ -19,12 +19,8 @@ fnando.linter
 formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
 formulahendry.code-runner
-github.copilot-chat
 gruntfuggly.todo-tree
-hisn0w.spec-kit-vscode
 humao.rest-client
-hunghg255.iconify-preview
-hybridtalentcomputing.cline-chinese
 mhutchie.git-graph
 ms-ceintl.vscode-language-pack-zh-hans
 naumovs.color-highlight

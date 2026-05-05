@@ -1,282 +1,30 @@
 {
-  "workbench.iconTheme": "material-icon-theme",
-  "files.autoSave": "afterDelay",
-  "editor.fontFamily": "Maple Mono NF CN, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": "'calt', 'ss04', 'ss01', 'ss02'",
-  "editor.tabSize": 2,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.mouseWheelZoom": true,
-  "editor.formatOnSave": true,
-  // ! prettier config - 优化版本
-  "editor.formatOnSaveTimeout": 2000,
-  "editor.formatOnSaveMode": "modificationsIfAvailable", // 只格式化当前文件，提升性能
-  "prettier.requireConfig": false, // 不强制要求配置文件，避免全项目扫描
-  "prettier.useEditorConfig": false, // 不使用.editorconfig，减少文件查找
-  // 删除了所有 prettier.xxx 规则配置，改为使用 .prettierrc 文件
-
-  "typescript.preferences.quoteStyle": "single",
-  "files.exclude": {
-    "**/node_modules": true,
-    "**/dist": true, // 新增：排除构建目录
-    "**/.git": true, // 新增：排除git目录
-    "**/coverage": true // 新增：排除测试覆盖率目录
-  },
-
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  // ! koroFileHeader config
-  // 头部注释
-  "fileheader.customMade": {
-    // 自动提取当前git config中的: 用户名、邮箱
-    "Author": "git config user.name && git config user.email", // 同时获取用户名与邮箱
-    "Date": "Do not edit", // 文件创建时间(不变)
-    "LastEditors": "git config user.name && git config user.email", // 文件最后编辑者 与Author字段一致
-    "LastEditTime": "Do not edit", // 文件最后编辑时间
-    "FilePath": "Do not edit", // 文件在项目中的相对路径 自动更新
-    "Description": "", // 介绍文件的作用、文件的入参、出参。
-    "custom_string_obkoro1_copyright": "Copyright (c) ${now_year} by CHENY, All Rights Reserved 😎. "
-  },
-  // 函数注释
-  "fileheader.cursorMode": {
-    "description": "",
-    "param": "",
-    "return": ""
-  },
-
-  "fileheader.configObj": {
-    "pathFormat": "${projectRoot}/...", // 改为相对路径格式
-    // 自动添加头部注释黑名单
-    "prohibitAutoAdd": ["json", "md"], // 禁止.json .md文件，自动添加头部注释
-    // 自动添加头部注释黑名单
-    "prohibitItemAutoAdd": ["test_koro", "test_koro2"], // 禁止test_kro/test_koro2项目自动添加头部注释
-    // 某些文件夹或文件禁止添加自动注释
-    "folderBlacklist": ["node_modules", "bun.lock"]
-  },
-  "terminal.integrated.profiles.windows": {
-    "cmder": {
-      "path": "D:/devlopment/Git/bin/bash.exe",
-      "args": [],
-      "icon": "terminal-bash"
-    }
-  },
-  "terminal.integrated.defaultProfile.windows": "Git Bash",
-  "git.autofetch": true,
-  "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "diffEditor.ignoreTrimWhitespace": false,
-  "editor.wordWrap": "on",
-  "gitlens.views.searchAndCompare.files.layout": "list",
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "liveServer.settings.donotShowInfoMsg": true,
-  // ! TODO TREE CONFIG
-  //todo-tree 标签配置  标签兼容大小写字母(很好的功能!!!)
-  "todo-tree.regex.regex": "((%|#|//|<!--|^\\s*\\*)\\s*($TAGS)|^\\s*- \\[ \\])",
-  // 添加自定义的标签成员,将在下面实现它们的样式
-  "todo-tree.general.tags": ["TODO", "TAG", "BUG", "HACK", "FIXME", "MARK"],
-  "todo-tree.regex.regexCaseSensitive": true,
-  "todo-tree.highlights.defaultHighlight": {
-    //如果相应变量没赋值就会使用这里的默认值
-    "foreground": "#030303dd", //字体颜色
-    "background": "#fff713", //背景色
-    "icon": "check", //标签样式 check 是一个对号的样式
-    "rulerColour": "#fff713", //边框颜色
-    "type": "tag", //填充色类型  可在TODO TREE 细节页面找到允许的值
-    "iconColour": "#fff713" //标签颜色
-  },
-
-  "todo-tree.highlights.customHighlight": {
-    // 待完成
-    "TODO": {
-      "icon": "alert", //标签样式
-      "background": "#FF8C00", //背景色
-      "rulerColour": "#020201", //外框颜色
-      "iconColour": "#FF8C00" //标签颜色
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Monokai",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "path": "D:\\development\\Git\\bin\\bash.exe",
+            "args": [
+                "--login",
+                "-i"
+            ]
+        }
     },
-    // 错误
-    "BUG": {
-      "background": "#FF2D00",
-      "icon": "bug",
-      "rulerColour": "#FF2D00",
-      "iconColour": "#FF2D00"
-    },
-    // 标签
-    "TAG": {
-      "background": "#3498DB",
-      "icon": "tag",
-      "rulerColour": "#3498DB",
-      "iconColour": "#3498DB",
-      "rulerLane": "full"
-    },
-    // 待修理
-    "FIXME": {
-      "background": "#F06292",
-      "icon": "unverified",
-      "rulerColour": "#F06292",
-      "iconColour": "#F06292"
-    },
-    // 根据自己的使用定义
-    "HACK": {
-      "background": "#ffffff",
-      "icon": "versions",
-      "rulerColour": "#ffffff",
-      "iconColour": "#ffffff"
-    },
-    // 标记
-    "MARK": {
-      "background": "#08e6f6",
-      "icon": "note",
-      "rulerColour": "#08e6f6",
-      "iconColour": "#08e6f6"
-    }
-  },
-  "better-comments.tags": [
-    {
-      "tag": "!",
-      "color": "#FF2D00",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "?",
-      "color": "#3498DB",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "//",
-      "color": "#474747",
-      "strikethrough": true,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "*",
-      "color": "#98C379",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "todo",
-      "color": "#FF8C00",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "bug",
-      "color": "#FF2D00",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "tag",
-      "color": "#3498DB",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "fixme",
-      "color": "#F06292",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "hack",
-      "color": "#ffffff",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "mark",
-      "color": "#08e6f6",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    }
-  ],
-  //! 有道翻译配置
-  "samge.translate.providerAppId": "4e5d63fa0a781989",
-  "samge.translate.providerAppSecret": "O0plOvz0eLC0TImAmuP309euwBGKVwPn",
-  "samge.translate.providerName": "youdao",
-  "samge.translate.enableOutput": false,
-  //! code-runner 导入器配置
-  "tsimporter.filesToScan": ["**/*.ts", "**/*.tsx", "**/*.vue"],
-  "security.workspace.trust.untrustedFiles": "open",
-  "workbench.editor.empty.hint": "hidden",
-  "code-runner.executorMap": {
-    "javascript": "node",
-    "python": "python -u",
-    "go": "go run",
-    "typescript": "ts-node",
-    "sass": "sass --style expanded",
-    "scss": "scss --style expanded",
-    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css"
-  },
-  "terminal.integrated.fontSize": 16, // 终端字体大小·
-  "git.ignoreMissingGitWarning": true,
-  "trae.codeCompletionPro": {
-    "enableCodeCompletionPro": true
-  },
-  "github.copilot.enable": {
-    "enabled": true
-  },
-  "workbench.colorTheme": "Monokai",
-  "github.copilot.nextEditSuggestions.enabled": true,
-  "files.associations": {
-    "*.vue": "vue",
-    "*.d.ts": "typescript"
-  },
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/*.log": true,
-    "**/dist": true,
-    "**/.git": true,
-    "**/.DS_Store": true
-  },
-  "typescript.preferences.includePackageJsonAutoImports": "auto",
-  "editor.inlineSuggest.suppressSuggestions": true,
-  "cody.suggestions.mode": "auto-edit",
-  "trae.chatLanguage": "cn",
-  "trae.tab.cue": true,
-  "trae.tab.enableRename": false,
-  "trae.tab.enableAutoImport": false
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "editor.mouseWheelZoom": true,
+    "chat.viewSessions.orientation": "stacked",
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1"
 }
